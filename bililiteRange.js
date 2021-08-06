@@ -63,7 +63,7 @@ var bililiteRange = module.exports = function(el, debug){
 	ret._el = el;
 	// determine parent document, as implemented by John McLear <john@mclear.co.uk>
 	ret._doc = el.ownerDocument;
-	ret._win = 'defaultView' in ret._doc ? ret._doc.defaultView : ret._doc.parentWindow;
+	ret._win = el.getRootNode() instanceof ShadowRoot ? el.getRootNode() :('defaultView' in ret._doc ? ret._doc.defaultView : ret._doc.parentWindow);
 	ret._textProp = textProp(el);
 	ret._bounds = [0, ret.length()];
 	//  There's no way to detect whether a focus event happened as a result of a click (which should change the selection)
